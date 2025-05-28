@@ -14,4 +14,8 @@ class Vistas_Controller extends Controller
     public function Home(){
         return view('Dashboard.Home');
     }
+
+    public function RegistrarCliente(){
+        return view('Dashboard.RegistrarCliente');
+    }
 }
