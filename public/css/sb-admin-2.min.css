@@ -448,6 +448,9 @@ h6 {
     line-height: 1.2
 }
 
+.d-grid {
+    display: grid !important;
+}   
 hr {
     margin-top: 1rem;
     margin-bottom: 1rem;
