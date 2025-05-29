@@ -19,7 +19,7 @@ class Vistas_Controller extends Controller
         return view('Dashboard.RegistrarCliente');
     }
 
-    public function RegistrarServcio(){
+    public function RegistrarServicio(){
         return view('Dashboard.AgregarServicio');
     }
 }
