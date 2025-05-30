@@ -16,138 +16,7 @@
     <script src="https://kit.fontawesome.com/e485076abf.js" crossorigin="anonymous"></script>
 
     <!-- Estilos personalizados para layout fijo -->
-    <style>
-        /* Hacer que el body ocupe toda la pantalla */
-        html, body {
-            height: 100%;
-            overflow-x: hidden;
-        }
-
-        /* Wrapper principal con flexbox */
-        #wrapper {
-            display: flex;
-            min-height: 100vh;
-        }
-
-        /* Sidebar fijo a la izquierda */
-        #accordionSidebar {
-            position: fixed !important;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            width: 224px; /* Ancho estándar del sidebar */
-            z-index: 1000;
-            overflow-y: auto;
-            /* Scrollbar personalizado para webkit browsers */
-            scrollbar-width: thin;
-            scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
-        }
-
-        #accordionSidebar::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        #accordionSidebar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        #accordionSidebar::-webkit-scrollbar-thumb {
-            background-color: rgba(255, 255, 255, 0.3);
-            border-radius: 3px;
-        }
-
-        /* Content wrapper ajustado */
-        #content-wrapper {
-            margin-left: 224px; /* Mismo ancho que el sidebar */
-            width: calc(100% - 224px);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Topbar fijo en la parte superior */
-        .topbar {
-            position: fixed !important;
-            top: 0;
-            left: 224px; /* Inicia después del sidebar */
-            right: 0;
-            z-index: 999;
-            width: calc(100% - 224px);
-        }
-
-        /* Contenido principal con padding-top para compensar la topbar fija */
-        #content {
-            flex: 1;
-            padding-top: 80px; /* Altura aproximada de la topbar + margen */
-        }
-
-        /* Footer que se queda al final */
-        .sticky-footer {
-            margin-top: auto;
-        }
-
-        /* Estilos responsive para tablets y móviles */
-        @media (max-width: 768px) {
-            /* En móviles, el sidebar se oculta por defecto */
-            #accordionSidebar {
-                left: -224px;
-                transition: left 0.3s ease-in-out;
-            }
-
-            /* Cuando el sidebar está activo en móvil */
-            #accordionSidebar.active {
-                left: 0;
-            }
-
-            /* Content wrapper ocupa todo el ancho en móvil */
-            #content-wrapper {
-                margin-left: 0;
-                width: 100%;
-            }
-
-            /* Topbar ocupa todo el ancho en móvil */
-            .topbar {
-                left: 0;
-                width: 100%;
-            }
-
-            /* Overlay para cerrar sidebar en móvil */
-            .sidebar-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.5);
-                z-index: 999;
-                display: none;
-            }
-
-            .sidebar-overlay.active {
-                display: block;
-            }
-        }
-
-        /* Estilos adicionales para mejorar la apariencia */
-        .container-fluid {
-            padding: 1.5rem;
-        }
-
-        /* Animaciones suaves */
-        #accordionSidebar, #content-wrapper, .topbar {
-            transition: all 0.3s ease-in-out;
-        }
-
-        /* Asegurar que los dropdowns funcionen correctamente */
-        .dropdown-menu {
-            z-index: 1050;
-        }
-
-        /* Estilos para el botón de toggle del sidebar en móvil */
-        #sidebarToggleTop {
-            z-index: 1001;
-        }
-    </style>
+    <link rel="stylesheet" href="{{asset('css/Layout.css')}}">
 
     @yield('DataTablecss')
 
@@ -165,7 +34,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('Home')}}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -529,15 +398,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">¿Realmente quieres Salir?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Selecciona "Salir" a continuación si deseas finalizar la sesión actual.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="{{route('LogOut')}}">Salir</a>
                 </div>
             </div>
         </div>
@@ -555,34 +424,10 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Script personalizado para el sidebar en móviles -->
-    <script>
-        $(document).ready(function() {
-            // Toggle sidebar en móviles
-            $('#sidebarToggleTop').click(function() {
-                $('#accordionSidebar').toggleClass('active');
-                $('#sidebarOverlay').toggleClass('active');
-            });
-            
-            // Cerrar sidebar al hacer click en el overlay (móviles)
-            $('#sidebarOverlay').click(function() {
-                $('#accordionSidebar').removeClass('active');
-                $('#sidebarOverlay').removeClass('active');
-            });
-            
-            // Mantener funcionalidad original del botón de colapsar sidebar
-            $('#sidebarToggle').click(function() {
-                if ($(window).width() > 768) {
-                    // En desktop, colapsa/expande el sidebar
-                    $('#accordionSidebar').toggleClass('collapsed');
-                    $('#content-wrapper').toggleClass('expanded');
-                }
-            });
-        });
-    </script>
+    <script src="{{asset('js/Layout.js')}}"></script>
 
     <!--Customs Scripts-->
     @yield('Scripts')
 
 </body>
-
 </html>
