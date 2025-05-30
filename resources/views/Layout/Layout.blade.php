@@ -1,29 +1,162 @@
 <!DOCTYPE html>
 <html lang="es-mx">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Videsa</title>
 
     <!-- Custom fonts for this template-->
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
-
     <script src="https://kit.fontawesome.com/e485076abf.js" crossorigin="anonymous"></script>
+
+    <!-- Estilos personalizados para layout fijo -->
+    <style>
+        /* Hacer que el body ocupe toda la pantalla */
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        /* Wrapper principal con flexbox */
+        #wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar fijo a la izquierda */
+        #accordionSidebar {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 224px; /* Ancho estándar del sidebar */
+            z-index: 1000;
+            overflow-y: auto;
+            /* Scrollbar personalizado para webkit browsers */
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+        }
+
+        #accordionSidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #accordionSidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        #accordionSidebar::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
+
+        /* Content wrapper ajustado */
+        #content-wrapper {
+            margin-left: 224px; /* Mismo ancho que el sidebar */
+            width: calc(100% - 224px);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Topbar fijo en la parte superior */
+        .topbar {
+            position: fixed !important;
+            top: 0;
+            left: 224px; /* Inicia después del sidebar */
+            right: 0;
+            z-index: 999;
+            width: calc(100% - 224px);
+        }
+
+        /* Contenido principal con padding-top para compensar la topbar fija */
+        #content {
+            flex: 1;
+            padding-top: 80px; /* Altura aproximada de la topbar + margen */
+        }
+
+        /* Footer que se queda al final */
+        .sticky-footer {
+            margin-top: auto;
+        }
+
+        /* Estilos responsive para tablets y móviles */
+        @media (max-width: 768px) {
+            /* En móviles, el sidebar se oculta por defecto */
+            #accordionSidebar {
+                left: -224px;
+                transition: left 0.3s ease-in-out;
+            }
+
+            /* Cuando el sidebar está activo en móvil */
+            #accordionSidebar.active {
+                left: 0;
+            }
+
+            /* Content wrapper ocupa todo el ancho en móvil */
+            #content-wrapper {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            /* Topbar ocupa todo el ancho en móvil */
+            .topbar {
+                left: 0;
+                width: 100%;
+            }
+
+            /* Overlay para cerrar sidebar en móvil */
+            .sidebar-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+                display: none;
+            }
+
+            .sidebar-overlay.active {
+                display: block;
+            }
+        }
+
+        /* Estilos adicionales para mejorar la apariencia */
+        .container-fluid {
+            padding: 1.5rem;
+        }
+
+        /* Animaciones suaves */
+        #accordionSidebar, #content-wrapper, .topbar {
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Asegurar que los dropdowns funcionen correctamente */
+        .dropdown-menu {
+            z-index: 1050;
+        }
+
+        /* Estilos para el botón de toggle del sidebar en móvil */
+        #sidebarToggleTop {
+            z-index: 1001;
+        }
+    </style>
+
+    @yield('DataTablecss')
 
 </head>
 
 <body id="page-top">
+
+    <!-- Overlay para móviles -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -92,8 +225,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opciones:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Añadir</a>
-                        <a class="collapse-item" href="utilities-border.html">Modificar</a>
+                        <a class="collapse-item" href="#">Añadir</a>
+                        <a class="collapse-item" href="#">Modificar</a>
                     </div>
                 </div>
             </li>
@@ -111,25 +244,25 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
+                    <span>Servicios</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                        <h6 class="collapse-header">Servicios:</h6>
+                        <a class="collapse-item" href="#">Completados</a>
+                        <a class="collapse-item" href="{{route('ServiciosRegistrados')}}">Registrados</a>
+                        <a class="collapse-item" href="#">Forgot Password</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
+                        <a class="collapse-item" href="#">404 Page</a>
+                        <a class="collapse-item" href="#">Blank Page</a>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Charts</span></a>
             </li>
@@ -152,7 +285,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -345,7 +478,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Salir
                                 </a>
                             </div>
                         </li>
@@ -357,9 +490,12 @@
 
                 <!-- Section of pages -->
                 <div class="container-fluid">
+                    <!-- Contenido de ejemplo para probar el scroll -->
+                    
                     @yield('Home')
                     @yield('RegistrarCliente')
                     @yield('AgregarServicio')
+                    @yield('ServiciosRegistrados')
                 </div>
                 <!-- /.container-fluid -->
 
@@ -418,12 +554,33 @@
     <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="{{asset('js/demo/chart-area-demo.js')}}"></script>
-    <script src="{{asset('js/demo/chart-pie-demo.js')}}"></script>
+    <!-- Script personalizado para el sidebar en móviles -->
+    <script>
+        $(document).ready(function() {
+            // Toggle sidebar en móviles
+            $('#sidebarToggleTop').click(function() {
+                $('#accordionSidebar').toggleClass('active');
+                $('#sidebarOverlay').toggleClass('active');
+            });
+            
+            // Cerrar sidebar al hacer click en el overlay (móviles)
+            $('#sidebarOverlay').click(function() {
+                $('#accordionSidebar').removeClass('active');
+                $('#sidebarOverlay').removeClass('active');
+            });
+            
+            // Mantener funcionalidad original del botón de colapsar sidebar
+            $('#sidebarToggle').click(function() {
+                if ($(window).width() > 768) {
+                    // En desktop, colapsa/expande el sidebar
+                    $('#accordionSidebar').toggleClass('collapsed');
+                    $('#content-wrapper').toggleClass('expanded');
+                }
+            });
+        });
+    </script>
 
     <!--Customs Scripts-->
-
     @yield('Scripts')
 
 </body>

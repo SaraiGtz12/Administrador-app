@@ -22,4 +22,12 @@ class Vistas_Controller extends Controller
     public function RegistrarServicio(){
         return view('Dashboard.AgregarServicio');
     }
+    
+    public function Buscar(){
+        return view('Dashboard.Buscar');
+    }
+    
+    public function VistaServiciosRegistrados(){
+        return view('Dashboard.ServiciosRegistrados');
+    }
 }
