@@ -4,8 +4,8 @@
         <div class="text-center">
             <h3>Registrar Orden de Servicio</h3>
         </div>
-        <form action="" method="post">
-            <div class="card">
+        <form action="">
+            <div class="card mb-2">
                 <!--Datos Cliente-->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Datos del Cliente</h6>
@@ -55,6 +55,8 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="card mb-2">
                 <!--Datos Servicio-->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Datos del Servicio</h6>
@@ -70,18 +72,44 @@
                         <div class="col">
                             <div class="d-grid mb-2 mt-4">
                                 <span></span>
-                                <button class="btn btn-info" type="button" id="NumServicios">Agregar</button>
+                                <button class="btn btn-info" type="button" id="NumServicios">Agregar Servicios</button>
                             </div>
                         </div>
                     </div>
-                    <div id="ContenidoMuestras">
-                        
-                    </div>
-                    
+                    <div id="ContenidoServicio"></div>
                     <div class="mb-4">
                         <span>Descripción del Servicio</span>
                         <textarea name="Descripcion" id="Descripcion" class="form-control" rows="4"></textarea>
                     </div>
+                </div>
+            </div>
+            <div class="card mb-2">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Información Adicional</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-2">
+                                <span>Fecha de Muestreo</span>
+                                <input type="date" name="FechaMuestreo" id="FechaMuestreo" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-2">
+                                <span>Cantidad de Muestreadores</span>
+                                <input type="number" name="NumMuetreador" id="NumMuetreador" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="d-grid mb-2 mt-4">
+                                <span></span>
+                                <button class="btn btn-info" type="button" id="BuscarMuestreador">Buscar Muestreador</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="Muestreadores"></div>
+                    
                     <div class="d-grid">
                         <input type="submit" value="Registrar" class="btn btn-primary">
                     </div>
