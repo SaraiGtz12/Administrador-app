@@ -41,15 +41,20 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">¡Bienvenido de nuevo!</h1>
                                     </div>
-                                    <form class="user">
+                                    <form action="{{route('Log_In')}}" method="POST" class="user">
+                                        @csrf
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Correo empresarial...">
+                                            <input 
+                                                type="email" 
+                                                class="form-control form-control-user" 
+                                                name="UserEmailTxt" id="UserEmailTxt" 
+                                                aria-describedby="emailHelp" placeholder="Correo empresarial...">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Contraseña">
+                                            <input type="password"
+                                                class="form-control form-control-user"
+                                                id="UserPasswordTxt" name="UserPasswordTxt"
+                                                placeholder="Contraseña">
                                         </div>
                                         
                                         <input type="submit" value="Iniciar Sesión" class="btn btn-primary btn-user btn-block">

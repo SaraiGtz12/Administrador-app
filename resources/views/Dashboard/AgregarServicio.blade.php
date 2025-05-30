@@ -109,6 +109,7 @@
                         </div>
                     </div>
                     <div id="Muestreadores"></div>
+                    
                     <div class="d-grid">
                         <input type="submit" value="Registrar" class="btn btn-primary">
                     </div>
