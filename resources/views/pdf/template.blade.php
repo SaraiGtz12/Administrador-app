@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <title>Informe PDF</title>
     <style>
-
-
         @page {
             margin: 40px 10px;
         }
@@ -390,19 +388,16 @@
             <td>N/A</td>
         </tr>
     </table>
-    <table style=" margin-top: 20px;text-align: center">
+    <table style="margin: 20px auto; text-align: center;">
         <tr>
-         
             <td class="col-1">
                 C_R=20.9-0-R/<br>
                 20.9-0_M*C_M<br>
-             
             </td>
             <td class="col-2">
                 CR=&nbsp; 20.9-5.0<br>
                 &nbsp;--------------<br>
-               &nbsp; 20.9-15.00<br>
-           
+                &nbsp; 20.9-15.00<br>
             </td>
             <td class="col-2">
                 *
@@ -410,9 +405,9 @@
             <td class="col-2">
                 8.06 = 21.73 ppmv
             </td>
-       
         </tr>
     </table>
+
 
     <table class="evaluated-equipment-table">
      
