@@ -25,7 +25,7 @@ class LoginController extends Controller
                 $request->session()->regenerate();
 
                 if($usuario->RolId == 1){
-                    return redirect()->intentend('Dashboard.Home');
+                    return redirect()->intended('Dashboard.Home');
                 }
             }else{
                 Log::info("No coincide");
