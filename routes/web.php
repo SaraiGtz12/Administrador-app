@@ -14,4 +14,5 @@ Route::get('/agregar_servicio', [Vistas_Controller::class, 'RegistrarServicio'])
 
 
 //RUTAS PARA PLANTILLAS PDF
-Route::get('generate-pdf', [PdfController::class, 'generatePdf']);
+Route::get('generate085MG', [PdfController::class, 'generatePdf085MG']);
+Route::get('generate085G', [PdfController::class, 'generatePdf085G']);

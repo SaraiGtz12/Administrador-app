@@ -18,13 +18,17 @@ class PdfController extends Controller
 
 
 
-public function generatePdf()
+public function generatePdf085MG()
 {
     $pdf = Pdf::loadView('pdf.template085MG');
-    return $pdf->download('plantilla.pdf');
+    return $pdf->download('plantilla085MG.pdf');
 }
 
-
+public function generatePdf085G()
+{
+    $pdf = Pdf::loadView('pdf.template085G');
+    return $pdf->download('plantilla085G.pdf');
+}
 
 
 
