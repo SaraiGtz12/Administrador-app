@@ -12,20 +12,26 @@ class PdfController extends Controller
 {
     /* con esto ya descarga
     public function generatePdf()
-{
-    return view('pdf.template');
-}*/
+    {
+        return view('pdf.template');
+    }*/
 
+    public function generatePdf()
+    {
+        $pdf = Pdf::loadView('pdf.template085MG');
+        return $pdf->download('plantilla.pdf');
+    }
 
+    public function generatePdf085MG()
+    {
+        $pdf = Pdf::loadView('pdf.template085MG');
+        return $pdf->download('plantilla085MG.pdf');
+    }
 
-public function generatePdf()
-{
-    $pdf = Pdf::loadView('pdf.template085MG');
-    return $pdf->download('plantilla.pdf');
-}
-
-
-
-
+    public function generatePdf085G()
+    {
+        $pdf = Pdf::loadView('pdf.template085G');
+        return $pdf->download('plantilla085G.pdf');
+    }
 
 }
